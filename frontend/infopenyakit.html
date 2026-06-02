@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info Penyakit - CePaT</title>
+    <title>Info Penyakit - ACC</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-green: #38a169;
-            --dark-green: #276749;
+            /* Warna hijau utama diubah menjadi #4CAF50 */
+            --primary-green: #4CAF50; 
+            /* Warna tombol hijau saat diklik/hover diubah menjadi #43a047 */
+            --primary-hover: #43a047;
+            
             --light-green: #eaf4ed;
             --bg-light: #f4f9f5;
             --text-dark: #333333;
@@ -55,18 +58,17 @@
             gap: 10px;
         }
 
-        .logo-icon {
-            background-color: var(--white);
-            color: #d69e2e; /* Warna icon orange/kuning sesuai gambar */
-            font-size: 30px;
-        }
-
         .logo-text h1 {
-            font-size: 24px;
+            font-size: 20px;
             color: var(--primary-green);
             font-weight: 700;
             line-height: 1;
-            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
         }
 
         .nav-menu {
@@ -113,7 +115,7 @@
             transition: background 0.3s;
         }
 
-        .btn-logout:hover {
+        .btn-logout:hover, .btn-logout:active {
             background-color: #c53030;
         }
 
@@ -144,8 +146,7 @@
             align-items: center;
             padding: 50px 5%;
             text-align: center;
-            /* Latar belakang hero dengan overlay hijau terang */
-            background: linear-gradient(rgba(234, 244, 237, 0.8), rgba(234, 244, 237, 0.8)), url('https://images.unsplash.com/photo-1592417817098-8f3d6eb18865?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+            background: linear-gradient(rgba(234, 244, 237, 0.75), rgba(234, 244, 237, 0.75)), url('../fotoinfo.jpg') no-repeat center center/cover;
         }
 
         .hero-content {
@@ -154,7 +155,7 @@
         }
 
         .pill-badge {
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.6);
             color: var(--text-dark);
             padding: 5px 20px;
             border-radius: 20px;
@@ -247,17 +248,23 @@
         }
 
         .filter-btn:hover {
-            border-color: var(--primary-green);
-            color: var(--primary-green);
+            border-color: var(--primary-hover);
+            color: var(--primary-hover);
         }
 
         .filter-btn.active {
             border-color: var(--primary-green);
-            color: var(--primary-green);
-            box-shadow: 0 0 0 1px var(--primary-green);
+            color: var(--white);
+            background-color: var(--primary-green);
         }
 
-        /* --- CONTENT AREA (Empty Space filler) --- */
+        .filter-btn:active {
+            background-color: var(--primary-hover);
+            border-color: var(--primary-hover);
+            color: var(--white);
+        }
+
+        /* --- CONTENT AREA --- */
         .content-area {
             flex: 1;
             background-color: var(--bg-light);
@@ -319,7 +326,7 @@
 
             .hero {
                 min-height: 50vh;
-                padding-top: 60px;
+                padding-top: 80px;
             }
 
             .hero-title {
@@ -351,23 +358,25 @@
 
     <nav class="navbar">
         <div class="logo-container">
-            <div class="logo-icon">
-                <i class="fa-solid fa-circle-check"></i>
-            </div>
+            <!-- Ikon lama (logo-icon) sudah dihapus -->
+            <img src="../LogoWeb.png" alt="ACC Logo" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+            
             <div class="logo-text">
-                <h1>CePaT</h1>
+                <h1>ACC</h1>
+                <span>Agro Clima Care</span>
             </div>
         </div>
 
         <ul class="nav-menu" id="navMenu">
             <li class="nav-item"><a href="dashboard.html">Beranda</a></li>
-            <li class="nav-item"><a href="#">Identifikasi Penyakit</a></li>
-            <li class="nav-item active"><a href="#">Info Penyakit</a></li>
-            <li class="nav-item"><a href="#">Hasil Diagnosa</a></li>
+            <li class="nav-item"><a href="cekpenyakit.html">Identifikasi Penyakit</a></li>
+            <li class="nav-item active"><a href="infopenyakit.html">Info Penyakit</a></li>
+            <li class="nav-item"><a href="hasildiagnosa.html">Hasil Diagnosa</a></li>
+            <li class="nav-item"><a href="cekcuaca.html">Cek Cuaca</a></li>
         </ul>
 
         <div class="user-profile">
-            <span class="user-name">Halo, <strong>........</strong></span>
+            <span class="user-name">Halo, <strong>Petani</strong></span>
             <button class="btn-logout" onclick="window.location.href='loginpage.html'">Logout</button>
         </div>
 
@@ -401,10 +410,11 @@
     </section>
 
     <div class="content-area">
-        </div>
+        <!-- Konten Penyakit Nantinya Di Sini -->
+    </div>
 
     <footer>
-        <p>&copy; 2026 Website Cek Penyakit Tanaman (CePaT). Semua Hak Dilindungi.</p>
+        <p>&copy; 2026 Website Agro Clima Care (ACC). Semua Hak Dilindungi.</p>
     </footer>
 
     <script>

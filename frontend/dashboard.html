@@ -9,7 +9,11 @@
     
     <style>
         :root {
-            --primary-green: #2d8a4e;
+            /* Warna hijau utama diubah menjadi #4CAF50 */
+            --primary-green: #4CAF50;
+            /* Warna tombol hijau saat diklik/hover diubah menjadi #43a047 */
+            --primary-hover: #43a047;
+            
             --light-green: #eaf4ed;
             --bg-light: #f4f9f5;
             --text-dark: #333333;
@@ -49,18 +53,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .logo-icon {
-            background-color: var(--primary-green);
-            color: var(--white);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
         }
 
         .logo-text h1 {
@@ -120,7 +112,7 @@
             transition: background 0.3s;
         }
 
-        .btn-logout:hover {
+        .btn-logout:hover, .btn-logout:active {
             background-color: #c53030;
         }
 
@@ -149,8 +141,7 @@
             display: flex;
             align-items: center;
             padding: 50px 5%;
-            /* Ganti URL gambar di bawah ini dengan gambar latar belakang Anda jika ada */
-            background: linear-gradient(rgba(244, 249, 245, 0.85), rgba(244, 249, 245, 0.85)), url('https://images.unsplash.com/photo-1592417817098-8f3d6eb18865?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+            background: linear-gradient(rgba(244, 249, 245, 0.70), rgba(244, 249, 245, 0.70)), url('../fotopetani.jpg.jpeg') no-repeat center center/cover;
         }
 
         .hero-content {
@@ -185,12 +176,12 @@
             gap: 10px;
             cursor: pointer;
             text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(45, 138, 78, 0.2);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
             transition: transform 0.3s, background-color 0.3s;
         }
 
-        .btn-cta:hover {
-            background-color: #236d3d;
+        .btn-cta:hover, .btn-cta:active {
+            background-color: var(--primary-hover);
             transform: translateY(-2px);
         }
 
@@ -268,7 +259,7 @@
             }
 
             .user-name {
-                display: none; /* Sembunyikan nama teks di HP untuk menghemat ruang */
+                display: none;
             }
 
             .nav-menu {
@@ -327,9 +318,9 @@
 
     <nav class="navbar">
         <div class="logo-container">
-            <div class="logo-icon">
-                <i class="fa-solid fa-seedling"></i>
-            </div>
+            <!-- Ikon lama (logo-icon) sudah dihapus -->
+            <img src="../LogoWeb.png" alt="ACC Logo" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+            
             <div class="logo-text">
                 <h1>ACC</h1>
                 <span>Agro Clima Care</span>
@@ -337,11 +328,11 @@
         </div>
 
         <ul class="nav-menu" id="navMenu">
-            <li class="nav-item active"><a href="#">Beranda</a></li>
-            <li class="nav-item"><a href="#">Identifikasi Penyakit</a></li>
-            <li class="nav-item"><a href="info_penyakit.html">Info Penyakit</a></li>
-            <li class="nav-item"><a href="#">Hasil Diagnosa</a></li>
-            <li class="nav-item"><a href="#">Cek Cuaca</a></li>
+            <li class="nav-item active"><a href="dashboard.html">Beranda</a></li>
+            <li class="nav-item"><a href="cekpenyakit.html">Identifikasi Penyakit</a></li>
+            <li class="nav-item"><a href="infopenyakit.html">Info Penyakit</a></li>
+            <li class="nav-item"><a href="hasildiagnosa.html">Hasil Diagnosa</a></li>
+            <li class="nav-item"><a href="cekcuaca.html">Cek Cuaca</a></li>
         </ul>
 
         <div class="user-profile">
