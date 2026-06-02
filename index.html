@@ -55,23 +55,6 @@
       border-radius: 50%;
     }
 
-    /* Fallback logo SVG jika tidak ada file logo */
-    .logo-fallback {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--green-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .logo-fallback svg {
-      width: 26px;
-      height: 26px;
-    }
-
     .logo-text {
       display: flex;
       flex-direction: column;
@@ -81,7 +64,7 @@
     .logo-text .acc {
       font-size: 18px;
       font-weight: 800;
-      color: var(--green-primary);
+      color: var(--green-light);
       letter-spacing: 1px;
     }
 
@@ -141,7 +124,7 @@
     .hero-content h1 {
       font-size: clamp(28px, 5vw, 48px);
       font-weight: 800;
-      color: var(--green-primary);
+      color: var(--green-light);
       line-height: 1.2;
       margin-bottom: 16px;
       letter-spacing: -0.5px;
@@ -174,18 +157,18 @@
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.22s ease;
-      border: 2px solid var(--green-primary);
+      border: 2px solid var(--green-light);
       text-decoration: none;
       display: inline-block;
     }
 
     .btn-login {
-      background: var(--green-primary);
+      background: var(--green-light);
       color: var(--white);
     }
 
     .btn-login:hover {
-      background: var(--green-light);
+      background: var(--green-primary);
       border-color: var(--green-light);
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(46,125,50,0.35);
@@ -193,7 +176,7 @@
 
     .btn-daftar {
       background: transparent;
-      color: var(--green-primary);
+      color: var(--green-light);
     }
 
     .btn-daftar:hover {
@@ -223,17 +206,6 @@
   <nav class="navbar">
     <a href="#" class="logo-wrap">
       <img src="LogoWeb.png" alt="ACC Logo" class="logo-img" />
-      <!--
-       PILIHAN 2: Fallback logo SVG (aktif sekarang)
-      -->
-      <div class="logo-fallback">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="11" stroke="white" stroke-width="1.5"/>
-          <path d="M12 5 C9 8, 6 10, 7 14 C8 17, 11 18, 12 20 C13 18, 16 17, 17 14 C18 10, 15 8, 12 5Z"
-                fill="white" opacity="0.9"/>
-          <path d="M8 12 Q10 9, 12 11 Q14 13, 16 10" stroke="#a5d6a7" stroke-width="1" fill="none"/>
-        </svg>
-      </div>
 
       <div class="logo-text">
         <span class="acc">ACC</span>
