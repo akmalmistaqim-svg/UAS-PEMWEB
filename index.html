@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACC - Agro Clima Care</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green-primary: #2e7d32;
+      --green-light: #4caf50;
+      --green-text: #2e7d32;
+      --white: #ffffff;
+      --overlay: rgba(255, 255, 255, 0.45);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: var(--white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      padding: 10px 32px;
+      height: 60px;
+    }
+
+    .navbar .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .navbar .logo-img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    /* Fallback logo SVG jika tidak ada file logo */
+    .logo-fallback {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--green-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-fallback svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text .acc {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--green-primary);
+      letter-spacing: 1px;
+    }
+
+    .logo-text .sub {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--green-light);
+      letter-spacing: 0.3px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Background image layer */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('bg.jpg'); /* ← ganti dengan nama file foto Anda */
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    /* White overlay untuk efek seperti di gambar */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.50);
+      z-index: 1;
+    }
+
+    /* Content di atas overlay */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      padding: 0 24px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      color: var(--green-primary);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-content p {
+      font-size: clamp(13px, 1.8vw, 15px);
+      font-weight: 400;
+      color: #333;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      min-width: 140px;
+      padding: 14px 36px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      border: 2px solid var(--green-primary);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-login {
+      background: var(--green-primary);
+      color: var(--white);
+    }
+
+    .btn-login:hover {
+      background: var(--green-light);
+      border-color: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(46,125,50,0.35);
+    }
+
+    .btn-daftar {
+      background: transparent;
+      color: var(--green-primary);
+    }
+
+    .btn-daftar:hover {
+      background: var(--green-primary);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(46,125,50,0.25);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 10px 16px;
+      }
+
+      .btn {
+        min-width: 120px;
+        padding: 12px 28px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="logo-wrap">
+      <!--
+        PILIHAN 1: Jika Anda punya file logo, ganti komentar ini dengan:
+        <img src="logo.png" alt="ACC Logo" class="logo-img" />
+
+        PILIHAN 2: Fallback logo SVG (aktif sekarang)
+      -->
+      <div class="logo-fallback">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="11" stroke="white" stroke-width="1.5"/>
+          <path d="M12 5 C9 8, 6 10, 7 14 C8 17, 11 18, 12 20 C13 18, 16 17, 17 14 C18 10, 15 8, 12 5Z"
+                fill="white" opacity="0.9"/>
+          <path d="M8 12 Q10 9, 12 11 Q14 13, 16 10" stroke="#a5d6a7" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+
+      <div class="logo-text">
+        <span class="acc">ACC</span>
+        <span class="sub">Agro Clima Care</span>
+      </div>
+    </a>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <!-- Ganti 'bg.jpg' dengan nama file foto sawah Anda -->
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1>Selamat Datang di Portal ACC</h1>
+      <p>
+        Website cek penyakit tanaman dan prediksi cuaca lokal. Silahkan masuk ke akun Anda
+        atau daftar pengguna baru untuk mulai menggunakan layanan
+      </p>
+      <div class="btn-group">
+        <a href="login.html" class="btn btn-login">LOGIN</a>
+        <a href="daftar.html" class="btn btn-daftar">DAFTAR</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
