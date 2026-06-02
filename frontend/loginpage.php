@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - ACC Agro Clima Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom font import (opsional, menyesuaikan font di gambar) */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-        body { font-family: 'Poppins', sans-serif; }
-    </style>
 </head>
 <body class="bg-[#eff5ef] min-h-screen flex items-center justify-center p-4">
 
