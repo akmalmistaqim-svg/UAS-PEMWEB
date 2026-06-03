@@ -8,28 +8,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
-        /* Styling khusus agar posisi selalu di tengah layar */
         body {
             background-color: #f4f6f9;
-            font-family: 'Poppins', sans-serif; /* Menerapkan font Poppins */
+            font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem 0; /* Padding agar form panjang tidak terpotong di layar kecil */
+            padding: 2rem 0;
         }
 
-        /* Styling untuk kotak form register */
         .register-container {
             width: 100%;
-            max-width: 450px; /* Sedikit lebih lebar dari form login */
+            max-width: 450px;
             padding: 2.5rem;
             background-color: #ffffff;
             border-radius: 12px;
             box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08);
         }
 
-        /* Menyamakan warna hijau */
         .btn-custom-green {
             background-color: #4CAF50;
             border-color: #4CAF50;
@@ -51,20 +48,18 @@
             color: #43a047;
         }
 
-        /* Styling area logo yang baru */
         .logo-area {
-            gap: 12px; /* Memberikan jarak antara ikon dan grup teks */
+            gap: 12px;
         }
         
         .logo-leaf-icon {
-            height: 65px; /* Tinggi disesuaikan agar proporsional dengan teks 2 baris */
+            height: 65px;
             width: auto;
         }
         
-        /* Pengaturan teks logo */
         .brand-title {
             font-size: 2.2rem;
-            line-height: 0.9; /* Merapatkan jarak bawah ACC ke teks Agro */
+            line-height: 0.9;
             letter-spacing: 0.5px;
         }
 
@@ -81,14 +76,11 @@
     <div class="register-container">
         <div class="text-center mb-4">
             
-            <!-- Area Logo Fleksibel (Ikon Kiri, Teks Kanan) -->
             <div class="logo-area d-flex align-items-center justify-content-center mb-3">
-                <!-- Ikon Kiri -->
                 <div>
                     <img src="../LogoWeb.png" alt="Logo ACC" class="logo-leaf-icon img-fluid">
                 </div>
                 
-                <!-- Grup Teks Kanan (Atas dan Bawah) -->
                 <div class="text-start d-flex flex-column justify-content-center mt-1">
                     <h1 class="text-custom-green fw-bold mb-0 brand-title">ACC</h1>
                     <span class="brand-subtitle mt-1">Agro Clima Care</span>
@@ -107,6 +99,11 @@
             <div class="mb-3">
                 <label for="usernameInput" class="form-label" style="font-size: 0.9rem;">Username</label>
                 <input type="text" class="form-control" id="usernameInput" placeholder="Buat username Anda" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="phoneInput" class="form-label" style="font-size: 0.9rem;">Nomor Telepon</label>
+                <input type="tel" class="form-control" id="phoneInput" placeholder="Masukkan nomor telepon Anda" required>
             </div>
             
             <div class="mb-3">
