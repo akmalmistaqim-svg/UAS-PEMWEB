@@ -1,3 +1,6 @@
+<?php
+// dashboard.php
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,11 +12,8 @@
     
     <style>
         :root {
-            /* Warna hijau utama diubah menjadi #4CAF50 */
             --primary-green: #4CAF50;
-            /* Warna tombol hijau saat diklik/hover diubah menjadi #43a047 */
             --primary-hover: #43a047;
-            
             --light-green: #eaf4ed;
             --bg-light: #f4f9f5;
             --text-dark: #333333;
@@ -116,7 +116,6 @@
             background-color: #c53030;
         }
 
-        /* Hamburger Menu */
         .hamburger {
             display: none;
             cursor: pointer;
@@ -240,7 +239,7 @@
             border-top: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* --- RESPONSIVE MEDIA QUERIES --- */
+        /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
             .features {
                 grid-template-columns: repeat(2, 1fr);
@@ -249,68 +248,28 @@
         }
 
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-                order: 2;
-            }
-
-            .user-profile {
-                order: 3;
-            }
-
-            .user-name {
-                display: none;
-            }
-
+            .hamburger { display: flex; order: 2; }
+            .user-profile { order: 3; }
+            .user-name { display: none; }
             .nav-menu {
                 position: fixed;
-                top: 70px;
-                left: -100%;
+                top: 70px; left: -100%;
                 flex-direction: column;
                 background-color: var(--white);
-                width: 100%;
-                text-align: center;
+                width: 100%; text-align: center;
                 transition: 0.4s;
                 box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-                padding: 30px 0;
-                gap: 25px;
+                padding: 30px 0; gap: 25px;
             }
+            .nav-menu.active { left: 0; }
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(6px, -6px);
-            }
-
-            .hero {
-                padding-top: 80px;
-                text-align: center;
-                min-height: 60vh;
-            }
-
-            .hero-content {
-                margin: 0 auto;
-            }
-
-            .hero-title {
-                font-size: 28px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-                margin-top: 20px;
-                gap: 20px;
-            }
+            .hero { padding-top: 80px; text-align: center; min-height: 60vh; }
+            .hero-content { margin: 0 auto; }
+            .hero-title { font-size: 28px; }
+            .features { grid-template-columns: 1fr; margin-top: 20px; gap: 20px; }
         }
     </style>
 </head>
@@ -318,9 +277,7 @@
 
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Ikon lama (logo-icon) sudah dihapus -->
             <img src="../LogoWeb.png" alt="ACC Logo" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-            
             <div class="logo-text">
                 <h1>ACC</h1>
                 <span>Agro Clima Care</span>
@@ -328,16 +285,16 @@
         </div>
 
         <ul class="nav-menu" id="navMenu">
-            <li class="nav-item active"><a href="dashboard.html">Beranda</a></li>
-            <li class="nav-item"><a href="cekpenyakit.html">Identifikasi Penyakit</a></li>
-            <li class="nav-item"><a href="infopenyakit.html">Info Penyakit</a></li>
-            <li class="nav-item"><a href="hasildiagnosa.html">Hasil Diagnosa</a></li>
-            <li class="nav-item"><a href="cekcuaca.html">Cek Cuaca</a></li>
+            <li class="nav-item active"><a href="dashboard.php">Beranda</a></li>
+            <li class="nav-item"><a href="cekpenyakit.php">Identifikasi Penyakit</a></li>
+            <li class="nav-item"><a href="infopenyakit.php">Info Penyakit</a></li>
+            <li class="nav-item"><a href="hasildiagnosa.php">Hasil Diagnosa</a></li>
+            
         </ul>
 
         <div class="user-profile">
             <span class="user-name">Halo, <strong>Petani</strong></span>
-            <button class="btn-logout" onclick="window.location.href='loginpage.html'">Logout</button>
+            <button class="btn-logout" onclick="window.location.href='loginpage.php'">Logout</button>
         </div>
 
         <div class="hamburger" id="hamburgerBtn">
@@ -351,7 +308,7 @@
         <div class="hero-content">
             <h2 class="hero-title">DETEKSI DINI & KENDALIKAN PENYAKIT TANAMAN ANDA</h2>
             <p class="hero-description">Platform Digital Pintar untuk Diagnosis Akurat, Penanganan Efektif, dan Peningkatan Hasil Panen Petani Indonesia.</p>
-            <button class="btn-cta" onclick="window.location.href='cekpenyakit.html'">
+            <button class="btn-cta" onclick="window.location.href='cekpenyakit.php'">
                 <i class="fa-solid fa-camera"></i> Mulai Identifikasi Sekarang
             </button>
         </div>
@@ -359,32 +316,26 @@
 
     <section class="features">
         <div class="card">
-            <div class="card-icon">
-                <i class="fa-solid fa-leaf"></i>
-            </div>
+            <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
             <h3 class="card-title">Identifikasi Penyakit</h3>
             <p class="card-text">Unggah foto tanaman Anda untuk diagnosis cepat</p>
         </div>
 
         <div class="card">
-            <div class="card-icon">
-                <i class="fa-solid fa-book-open-reader"></i>
-            </div>
+            <div class="card-icon"><i class="fa-solid fa-book-open-reader"></i></div>
             <h3 class="card-title">Info Penyakit</h3>
             <p class="card-text">Temukan informasi lainnya tentang penyakit tanaman, gejala, dan cara penanganan</p>
         </div>
 
         <div class="card">
-            <div class="card-icon">
-                <i class="fa-solid fa-cloud-sun-rain"></i>
-            </div>
+            <div class="card-icon"><i class="fa-solid fa-cloud-sun-rain"></i></div>
             <h3 class="card-title">Cek Prediksi Cuaca</h3>
             <p class="card-text">Cek prediksi cuaca lokal di Wilayah Jawa Timur</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Website Agro Clima Care (ACC). Semua Hak Dilindungi.</p>
+        <p>&copy; <?php echo date('Y'); ?> Website Agro Clima Care (ACC). Semua Hak Dilindungi.</p>
     </footer>
 
     <script>
@@ -396,7 +347,6 @@
             navMenu.classList.toggle('active');
         });
 
-        // Menutup menu jika user mengklik salah satu link menu
         document.querySelectorAll('.nav-item a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburgerBtn.classList.remove('active');

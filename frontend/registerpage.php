@@ -1,3 +1,6 @@
+<?php
+// registerpage.php
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -90,42 +93,54 @@
             <p class="text-muted mt-2" style="font-size: 0.9rem;">Buat akun baru untuk mulai menggunakan layanan</p>
         </div>
 
-        <form>
+        <?php if (!empty($error_message)): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo htmlspecialchars($error_message); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($success_message)): ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo htmlspecialchars($success_message); ?>
+            </div>
+        <?php endif; ?>
+
+        <form method="POST" action="">
             <div class="mb-3">
                 <label for="namaInput" class="form-label" style="font-size: 0.9rem;">Nama Lengkap</label>
-                <input type="text" class="form-control" id="namaInput" placeholder="Masukkan nama lengkap Anda" required>
+                <input type="text" class="form-control" id="namaInput" name="nama" placeholder="Masukkan nama lengkap Anda" value="<?php echo isset($_POST['nama']) ? htmlspecialchars($_POST['nama']) : ''; ?>" required>
             </div>
 
             <div class="mb-3">
                 <label for="usernameInput" class="form-label" style="font-size: 0.9rem;">Username</label>
-                <input type="text" class="form-control" id="usernameInput" placeholder="Buat username Anda" required>
+                <input type="text" class="form-control" id="usernameInput" name="username" placeholder="Buat username Anda" value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>" required>
             </div>
             
             <div class="mb-3">
                 <label for="phoneInput" class="form-label" style="font-size: 0.9rem;">Nomor Telepon</label>
-                <input type="tel" class="form-control" id="phoneInput" placeholder="Masukkan nomor telepon Anda" required>
+                <input type="tel" class="form-control" id="phoneInput" name="phone" placeholder="Masukkan nomor telepon Anda" value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>" required>
             </div>
             
             <div class="mb-3">
                 <label for="emailInput" class="form-label" style="font-size: 0.9rem;">Email Address</label>
-                <input type="email" class="form-control" id="emailInput" placeholder="Masukkan email valid Anda" required>
+                <input type="email" class="form-control" id="emailInput" name="email" placeholder="Masukkan email valid Anda" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
             </div>
             
             <div class="mb-3">
                 <label for="passwordInput" class="form-label" style="font-size: 0.9rem;">Password</label>
-                <input type="password" class="form-control" id="passwordInput" placeholder="Buat password yang kuat" required>
+                <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Buat password yang kuat" required>
             </div>
 
             <div class="mb-4">
                 <label for="confirmPasswordInput" class="form-label" style="font-size: 0.9rem;">Konfirmasi Password</label>
-                <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Ulangi password Anda" required>
+                <input type="password" class="form-control" id="confirmPasswordInput" name="confirm_password" placeholder="Ulangi password Anda" required>
             </div>
             
             <button type="submit" class="btn btn-custom-green w-100 py-2 mb-3 fw-bold">DAFTAR SEKARANG</button>
             
             <div class="text-center">
                 <p class="mb-0" style="font-size: 0.85rem;">Sudah punya akun? 
-                    <a href="loginpage.html" class="text-decoration-none text-custom-green fw-bold">Login di sini</a>
+                    <a href="loginpage.php" class="text-decoration-none text-custom-green fw-bold">Login di sini</a>
                 </p>
             </div>
         </form>

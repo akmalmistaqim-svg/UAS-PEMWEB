@@ -1,3 +1,6 @@
+<?php
+// loginpage.php
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -88,20 +91,26 @@
             <p class="text-muted mt-2" style="font-size: 0.9rem;">Silakan login untuk melanjutkan</p>
         </div>
 
-        <form onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+        <?php if (!empty($error_message)): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo htmlspecialchars($error_message); ?>
+            </div>
+        <?php endif; ?>
+
+        <form method="POST" action="">
             <div class="mb-3">
                 <label for="usernameInput" class="form-label" style="font-size: 0.9rem;">Username</label>
-                <input type="text" class="form-control" id="usernameInput" placeholder="Masukkan username Anda" required>
+                <input type="text" class="form-control" id="usernameInput" name="username" placeholder="Masukkan username Anda" value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>" required>
             </div>
             
             <div class="mb-3">
                 <label for="passwordInput" class="form-label" style="font-size: 0.9rem;">Password</label>
-                <input type="password" class="form-control" id="passwordInput" placeholder="Masukkan password Anda" required>
+                <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Masukkan password Anda" required>
             </div>
             
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <input type="checkbox" class="form-check-input" id="rememberMe" name="remember_me">
                     <label class="form-check-label" for="rememberMe" style="font-size: 0.85rem;">Ingat Saya</label>
                 </div>
             </div>
@@ -110,7 +119,7 @@
             
             <div class="text-center">
                 <p class="mb-0" style="font-size: 0.85rem;">Belum punya akun? 
-                    <a href="registerpage.html" class="text-decoration-none text-custom-green fw-bold">Daftar di sini</a>
+                    <a href="registerpage.php" class="text-decoration-none text-custom-green fw-bold">Daftar di sini</a>
                 </p>
             </div>
         </form>

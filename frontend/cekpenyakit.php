@@ -1,3 +1,6 @@
+<?php
+// cekpenyakit.php
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -135,7 +138,7 @@
         /* --- CAMERA SECTION --- */
         .content-area {
             flex: 1;
-            padding: 100px 5% 50px; /* Offset dari navbar fixed */
+            padding: 100px 5% 50px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -179,12 +182,11 @@
             border: 2px dashed #cbd5e1;
         }
 
-        /* Style untuk video stream dan hasil foto (canvas) */
         #camera-stream, #camera-canvas {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none; /* Disembunyikan awalnya */
+            display: none;
         }
 
         .placeholder-icon {
@@ -234,7 +236,6 @@
             background-color: #e2e8f0;
         }
 
-        /* Tombol yang awalnya disembunyikan */
         #btn-snap, #btn-retake, #btn-send {
             display: none;
         }
@@ -269,10 +270,8 @@
             .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-            
-            .camera-card {
-                padding: 20px;
-            }
+
+            .camera-card { padding: 20px; }
         }
     </style>
 </head>
@@ -288,16 +287,16 @@
         </div>
 
         <ul class="nav-menu" id="navMenu">
-            <li class="nav-item"><a href="dashboard.html">Beranda</a></li>
-            <li class="nav-item active"><a href="cekpenyakit.html">Identifikasi Penyakit</a></li>
-            <li class="nav-item"><a href="infopenyakit.html">Info Penyakit</a></li>
-            <li class="nav-item"><a href="#">Hasil Diagnosa</a></li>
-            <li class="nav-item"><a href="#">Cek Cuaca</a></li>
+            <li class="nav-item"><a href="dashboard.php">Beranda</a></li>
+            <li class="nav-item active"><a href="cekpenyakit.php">Identifikasi Penyakit</a></li>
+            <li class="nav-item"><a href="infopenyakit.php">Info Penyakit</a></li>
+            <li class="nav-item"><a href="hasildiagnosa.php">Hasil Diagnosa</a></li>
+            
         </ul>
 
         <div class="user-profile">
             <span class="user-name">Halo, <strong>Petani</strong></span>
-            <button class="btn-logout" onclick="window.location.href='loginpage.html'">Logout</button>
+            <button class="btn-logout" onclick="window.location.href='loginpage.php'">Logout</button>
         </div>
 
         <div class="hamburger" id="hamburgerBtn">
@@ -314,9 +313,7 @@
 
             <div class="video-container">
                 <i class="fa-solid fa-camera placeholder-icon" id="placeholder-icon"></i>
-                
                 <video id="camera-stream" autoplay playsinline></video>
-                
                 <canvas id="camera-canvas"></canvas>
             </div>
 
@@ -341,11 +338,10 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Website Agro Clima Care (ACC). Semua Hak Dilindungi.</p>
+        <p>&copy; <?php echo date('Y'); ?> Website Agro Clima Care (ACC). Semua Hak Dilindungi.</p>
     </footer>
 
     <script>
-        // Logika Hamburger Menu
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const navMenu = document.getElementById('navMenu');
 
@@ -367,26 +363,20 @@
         const video = document.getElementById('camera-stream');
         const canvas = document.getElementById('camera-canvas');
         const placeholder = document.getElementById('placeholder-icon');
-        
+
         const btnStart = document.getElementById('btn-start');
         const btnSnap = document.getElementById('btn-snap');
         const btnRetake = document.getElementById('btn-retake');
         const btnSend = document.getElementById('btn-send');
 
-        let streamData = null; // Menyimpan data stream kamera
+        let streamData = null;
 
-        // 1. Membuka Kamera
         async function startCamera() {
             try {
-                // Meminta akses kamera (diutamakan kamera belakang / environment untuk HP)
-                const constraints = {
-                    video: { facingMode: 'environment' }
-                };
-
+                const constraints = { video: { facingMode: 'environment' } };
                 streamData = await navigator.mediaDevices.getUserMedia(constraints);
                 video.srcObject = streamData;
 
-                // Mengatur tampilan UI
                 placeholder.style.display = 'none';
                 canvas.style.display = 'none';
                 video.style.display = 'block';
@@ -402,27 +392,21 @@
             }
         }
 
-        // 2. Mengambil Foto (Snapshot)
         function snapPhoto() {
-            // Samakan ukuran canvas dengan resolusi asli video stream
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
-            
-            // Gambar frame video saat ini ke dalam canvas
+
             const context = canvas.getContext('2d');
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            // Tampilkan hasil canvas, sembunyikan live video
             video.style.display = 'none';
             canvas.style.display = 'block';
 
-            // Ubah tombol
             btnSnap.style.display = 'none';
             btnRetake.style.display = 'inline-flex';
             btnSend.style.display = 'inline-flex';
         }
 
-        // 3. Mengulang Pengambilan Foto
         function retakePhoto() {
             canvas.style.display = 'none';
             video.style.display = 'block';
@@ -432,17 +416,13 @@
             btnSnap.style.display = 'inline-flex';
         }
 
-        // 4. Simulasi Kirim Foto ke Database
         function sendToDatabase() {
-            // Karena tidak perlu database asli, kita gunakan alert pop-up
             alert("Berhasil! Foto telah dikirim ke database untuk dianalisis.");
-            
-            // Setelah dikirim, matikan stream kamera agar resource hemat
-            if(streamData) {
+
+            if (streamData) {
                 streamData.getTracks().forEach(track => track.stop());
             }
 
-            // Kembalikan UI ke kondisi semula
             video.style.display = 'none';
             canvas.style.display = 'none';
             placeholder.style.display = 'block';

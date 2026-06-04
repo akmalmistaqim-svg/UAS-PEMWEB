@@ -1,3 +1,6 @@
+<?php
+// hasildiagnosa.php
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -54,18 +57,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .logo-icon {
-            background-color: var(--primary-green);
-            color: var(--white);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
         }
 
         .logo-text h1 {
@@ -148,7 +139,7 @@
         /* --- CONTENT AREA --- */
         .content-area {
             flex: 1;
-            padding: 110px 5% 50px; /* Jarak untuk navbar fixed */
+            padding: 110px 5% 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -282,7 +273,7 @@
         }
 
         .suggestion-list li::before {
-            content: '\f058'; /* FontAwesome check-circle */
+            content: '\f058';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             color: var(--primary-green);
@@ -386,11 +377,7 @@
 
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Logo gambar tetap dipertahankan -->
             <img src="../LogoWeb.png" alt="ACC Logo" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" onerror="this.style.display='none'">
-            
-            <!-- Elemen <div class="logo-icon"> berisi fa-seedling TELAH DIHAPUS dari sini -->
-
             <div class="logo-text">
                 <h1>ACC</h1>
                 <span>Agro Clima Care</span>
@@ -398,16 +385,16 @@
         </div>
 
         <ul class="nav-menu" id="navMenu">
-            <li class="nav-item"><a href="dashboard.html">Beranda</a></li>
-            <li class="nav-item"><a href="cekpenyakit.html">Identifikasi Penyakit</a></li>
-            <li class="nav-item"><a href="infopenyakit.html">Info Penyakit</a></li>
-            <li class="nav-item active"><a href="hasildiagnosa.html">Hasil Diagnosa</a></li>
-            <li class="nav-item"><a href="cekcuaca.html">Cek Cuaca</a></li>
+            <li class="nav-item"><a href="dashboard.php">Beranda</a></li>
+            <li class="nav-item"><a href="cekpenyakit.php">Identifikasi Penyakit</a></li>
+            <li class="nav-item"><a href="infopenyakit.php">Info Penyakit</a></li>
+            <li class="nav-item active"><a href="hasildiagnosa.php">Hasil Diagnosa</a></li>
+            
         </ul>
 
         <div class="user-profile">
             <span class="user-name">Halo, <strong>Petani</strong></span>
-            <button class="btn-logout" onclick="window.location.href='loginpage.html'">Logout</button>
+            <button class="btn-logout" onclick="window.location.href='loginpage.php'">Logout</button>
         </div>
 
         <div class="hamburger" id="hamburgerBtn">
@@ -458,7 +445,7 @@
                 <button class="btn btn-outline" onclick="window.print()">
                     <i class="fa-solid fa-print"></i> Cetak Laporan
                 </button>
-                <button class="btn btn-primary" onclick="window.location.href='cekpenyakit.html'">
+                <button class="btn btn-primary" onclick="window.location.href='cekpenyakit.php'">
                     <i class="fa-solid fa-camera"></i> Identifikasi Lagi
                 </button>
             </div>
@@ -466,7 +453,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Website Agro Clima Care (ACC). Semua Hak Dilindungi.</p>
+        <p>&copy; <?php echo date('Y'); ?> Website Agro Clima Care (ACC). Semua Hak Dilindungi.</p>
     </footer>
 
     <script>

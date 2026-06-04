@@ -1,3 +1,6 @@
+<?php
+// infopenyakit.php
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,11 +12,8 @@
     
     <style>
         :root {
-            /* Warna hijau utama diubah menjadi #4CAF50 */
             --primary-green: #4CAF50; 
-            /* Warna tombol hijau saat diklik/hover diubah menjadi #43a047 */
             --primary-hover: #43a047;
-            
             --light-green: #eaf4ed;
             --bg-light: #f4f9f5;
             --text-dark: #333333;
@@ -119,7 +119,6 @@
             background-color: #c53030;
         }
 
-        /* Hamburger Menu */
         .hamburger {
             display: none;
             cursor: pointer;
@@ -184,7 +183,6 @@
             font-weight: 500;
         }
 
-        /* Search Box */
         .search-box {
             display: flex;
             background: var(--white);
@@ -281,7 +279,7 @@
             margin-top: auto;
         }
 
-        /* --- RESPONSIVE MEDIA QUERIES --- */
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -358,9 +356,7 @@
 
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Ikon lama (logo-icon) sudah dihapus -->
             <img src="../LogoWeb.png" alt="ACC Logo" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-            
             <div class="logo-text">
                 <h1>ACC</h1>
                 <span>Agro Clima Care</span>
@@ -368,16 +364,16 @@
         </div>
 
         <ul class="nav-menu" id="navMenu">
-            <li class="nav-item"><a href="dashboard.html">Beranda</a></li>
-            <li class="nav-item"><a href="cekpenyakit.html">Identifikasi Penyakit</a></li>
-            <li class="nav-item active"><a href="infopenyakit.html">Info Penyakit</a></li>
-            <li class="nav-item"><a href="hasildiagnosa.html">Hasil Diagnosa</a></li>
-            <li class="nav-item"><a href="cekcuaca.html">Cek Cuaca</a></li>
+            <li class="nav-item"><a href="dashboard.php">Beranda</a></li>
+            <li class="nav-item"><a href="cekpenyakit.php">Identifikasi Penyakit</a></li>
+            <li class="nav-item active"><a href="infopenyakit.php">Info Penyakit</a></li>
+            <li class="nav-item"><a href="hasildiagnosa.php">Hasil Diagnosa</a></li>
+            
         </ul>
 
         <div class="user-profile">
             <span class="user-name">Halo, <strong>Petani</strong></span>
-            <button class="btn-logout" onclick="window.location.href='loginpage.html'">Logout</button>
+            <button class="btn-logout" onclick="window.location.href='loginpage.php'">Logout</button>
         </div>
 
         <div class="hamburger" id="hamburgerBtn">
@@ -414,7 +410,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Website Agro Clima Care (ACC). Semua Hak Dilindungi.</p>
+        <p>&copy; <?php echo date('Y'); ?> Website Agro Clima Care (ACC). Semua Hak Dilindungi.</p>
     </footer>
 
     <script>
@@ -426,7 +422,6 @@
             navMenu.classList.toggle('active');
         });
 
-        // Menutup menu jika user mengklik salah satu link menu
         document.querySelectorAll('.nav-item a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburgerBtn.classList.remove('active');
@@ -434,13 +429,10 @@
             });
         });
 
-        // Interaksi klik untuk tombol filter
         const filterBtns = document.querySelectorAll('.filter-btn');
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Menghapus kelas active dari semua tombol
                 filterBtns.forEach(b => b.classList.remove('active'));
-                // Menambahkan kelas active ke tombol yang diklik
                 btn.classList.add('active');
             });
         });
