@@ -155,13 +155,12 @@ $koneksi->close();
                    value="<?php echo isset($nama) ? htmlspecialchars($nama) : ''; ?>" required>
         </div>
         <div class="mb-3">
-        <label class="form-label" style="font-size:0.9rem;">Username</label>
-<input type="text" class="form-control" name="username"
-       placeholder="Buat username Anda"
-       value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>"
-       autocomplete="off"
-       readonly
-       onfocus="this.removeAttribute('readonly');" required>
+    <label class="form-label" style="font-size:0.9rem;">Username</label>
+    <input type="text" class="form-control" name="username"
+        placeholder="Buat username Anda"
+        value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>"
+        readonly onfocus="this.removeAttribute('readonly');" required>
+</div>
         <div class="mb-3">
             <label class="form-label" style="font-size:0.9rem;">Nomor Telepon</label>
             <input type="tel" class="form-control" name="phone"
