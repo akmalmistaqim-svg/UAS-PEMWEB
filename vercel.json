@@ -6,12 +6,8 @@
   },
   "routes": [
     {
-      "src": "/api/frontend/(.*)\\.php",
-      "dest": "/api/frontend/$1.php"
-    },
-    {
-      "src": "/api/backend/(.*)\\.php",
-      "dest": "/api/backend/$1.php"
+      "src": "/(.*\\.php)",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
