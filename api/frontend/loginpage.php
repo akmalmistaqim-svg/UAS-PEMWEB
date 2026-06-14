@@ -12,7 +12,7 @@ if (isset($_SESSION['id_user'])) {
 }
 
 // ✅ Path koneksi disesuaikan (koneksi.php ada di folder backend)
-include '../backend/koneksi.php';
+include __DIR__ . '/../../backend/koneksi.php';
 
 $error_message   = '';
 $success_message = '';
