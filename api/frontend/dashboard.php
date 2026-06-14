@@ -1,12 +1,15 @@
 <?php
-// dashboard.php
+include $_SERVER['DOCUMENT_ROOT'] . '/api/backend/auth_helper.php';
 
-// ✅ Session check - wajib login dulu
-session_start();
-if (!isset($_SESSION['id_user'])) {
+$user_data = verify_auth();
+if (!$user_data) {
     header("Location: /api/frontend/loginpage.php");
     exit();
 }
+
+$nama_lengkap = $user_data['nama_lengkap'] ?? 'Petani';
+$nama_display = explode(' ', $nama_lengkap)[0];
+?>
 
 // ✅ Ambil nama dari session
 $nama_lengkap = $_SESSION['nama_lengkap'] ?? 'Petani';

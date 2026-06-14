@@ -1,32 +1,27 @@
 <?php
-// =====================================================
-// PROSES LOGIN - loginpage.php
-// =====================================================
-
 session_start();
 
-// ✅ Jika sudah login, langsung redirect ke dashboard
-if (isset($_SESSION['id_user'])) {
+include $_SERVER['DOCUMENT_ROOT'] . '/api/backend/koneksi.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/api/backend/auth_helper.php';
+
+// Jika sudah login
+if (verify_auth()) {
     header("Location: /api/frontend/dashboard.php");
     exit();
 }
-
-// ✅ Path koneksi disesuaikan (koneksi.php ada di folder backend)
-include $_SERVER['DOCUMENT_ROOT'] . '/api/backend/koneksi.php';
 
 $error_message   = '';
 $success_message = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $username   = trim($_POST['username'] ?? '');
-    $password   = $_POST['password'] ?? '';
+    $username    = trim($_POST['username'] ?? '');
+    $password    = $_POST['password'] ?? '';
     $remember_me = isset($_POST['remember_me']) ? 1 : 0;
 
     if (empty($username) || empty($password)) {
         $error_message = "❌ Username dan Password harus diisi!";
     } else {
-
         $sql  = "SELECT id_user, username, nama_lengkap, email, nomor_telepon,
                         password, created_at, updated_at, status
                  FROM users WHERE username = ?";
@@ -38,23 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
 
-            // ✅ Cek status akun
             if ($user['status'] !== 'aktif') {
                 $error_message = "❌ Akun Anda tidak aktif. Hubungi administrator.";
             } elseif (password_verify($password, $user['password'])) {
 
-                // Simpan ke session
-                $_SESSION['id_user']      = $user['id_user'];
-                $_SESSION['username']     = $user['username'];
-                $_SESSION['nama_lengkap'] = $user['nama_lengkap'];
-                $_SESSION['email']        = $user['email'];
-                $_SESSION['nomor_telepon']= $user['nomor_telepon'];
-                $_SESSION['created_at']   = $user['created_at'];
-                $_SESSION['updated_at']   = $user['updated_at'];
-
-                if ($remember_me == 1) {
-                    setcookie("username", $username, time() + (86400 * 30), "/");
-                }
+                // Buat cookie auth
+                create_auth_cookie($user);
 
                 header("Location: /api/frontend/dashboard.php");
                 exit();
@@ -63,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error_message = "❌ Password salah! Silakan coba lagi.";
             }
         } else {
-            $error_message = "❌ Username tidak terdaftar! Silakan daftar terlebih dahulu.";
+            $error_message = "❌ Username tidak terdaftar!";
         }
 
         $stmt->close();
@@ -111,7 +95,6 @@ $koneksi->close();
     <div class="text-center mb-4">
         <div class="logo-area d-flex align-items-center justify-content-center mb-3">
             <div>
-                <!-- ✅ Path gambar diperbaiki -->
                 <img src="/LogoWeb.png" alt="Logo ACC" class="logo-leaf-icon img-fluid">
             </div>
             <div class="text-start d-flex flex-column justify-content-center mt-1">

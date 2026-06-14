@@ -1,17 +1,12 @@
 <?php
-// logout.php
-session_start();
+setcookie('acc_auth', '', [
+    'expires'  => time() - 3600,
+    'path'     => '/',
+    'secure'   => true,
+    'httponly' => true,
+    'samesite' => 'Lax'
+]);
 
-// Hapus semua data session
-session_unset();
-session_destroy();
-
-// Hapus cookie remember me jika ada
-if (isset($_COOKIE['username'])) {
-    setcookie("username", "", time() - 3600, "/");
-}
-
-// Redirect ke halaman login
-header("Location: /index.html");
+header("Location: /api/frontend/loginpage.php");
 exit();
 ?>
