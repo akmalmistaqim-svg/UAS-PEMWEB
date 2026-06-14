@@ -377,7 +377,8 @@
 
     <nav class="navbar">
         <div class="logo-container">
-            <img src="../LogoWeb.png" alt="ACC Logo" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" onerror="this.style.display='none'">
+            <!-- ✅ Path gambar diperbaiki -->
+            <img src="/LogoWeb.png" alt="ACC Logo" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" onerror="this.style.display='none'">
             <div class="logo-text">
                 <h1>ACC</h1>
                 <span>Agro Clima Care</span>
@@ -385,16 +386,15 @@
         </div>
 
         <ul class="nav-menu" id="navMenu">
-            <li class="nav-item"><a href="dashboard.php">Beranda</a></li>
-            <li class="nav-item"><a href="cekpenyakit.php">Identifikasi Penyakit</a></li>
-            <li class="nav-item"><a href="infopenyakit.php">Info Penyakit</a></li>
-            <li class="nav-item active"><a href="hasildiagnosa.php">Hasil Diagnosa</a></li>
-            
+            <li class="nav-item"><a href="/api/frontend/dashboard.php">Beranda</a></li>
+            <li class="nav-item"><a href="/api/frontend/cekpenyakit.php">Identifikasi Penyakit</a></li>
+            <li class="nav-item"><a href="/api/frontend/infopenyakit.php">Info Penyakit</a></li>
+            <li class="nav-item active"><a href="/api/frontend/hasildiagnosa.php">Hasil Diagnosa</a></li>
         </ul>
 
         <div class="user-profile">
             <span class="user-name">Halo, <strong>Petani</strong></span>
-            <button class="btn-logout" onclick="window.location.href='loginpage.php'">Logout</button>
+            <button class="btn-logout" onclick="window.location.href='/api/frontend/logout.php'">Logout</button>
         </div>
 
         <div class="hamburger" id="hamburgerBtn">
@@ -445,7 +445,7 @@
                 <button class="btn btn-outline" onclick="window.print()">
                     <i class="fa-solid fa-print"></i> Cetak Laporan
                 </button>
-                <button class="btn btn-primary" onclick="window.location.href='cekpenyakit.php'">
+                <button class="btn btn-primary" onclick="window.location.href='/api/frontend/cekpenyakit.php'">
                     <i class="fa-solid fa-camera"></i> Identifikasi Lagi
                 </button>
             </div>
