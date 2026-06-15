@@ -1,5 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/api/backend/auth_helper.php';
+// Gunakan __DIR__ agar path-nya absolut dan aman di Vercel
+include __DIR__ . '/../backend/auth_helper.php';
 
 $user_data = verify_auth();
 if (!$user_data) {
@@ -10,6 +11,7 @@ if (!$user_data) {
 $nama_lengkap = $user_data['nama_lengkap'] ?? 'Petani';
 $nama_display = explode(' ', $nama_lengkap)[0];
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
