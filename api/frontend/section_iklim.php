@@ -1,4 +1,35 @@
 <!-- ===== SECTION 3: DATA IKLIM BPS ===== -->
+<style>
+.iklim-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.iklim-table-wrap table,
+.iklim-table {
+    width: 100% !important;
+    min-width: 100% !important;
+    border-collapse: collapse;
+    table-layout: auto !important;
+}
+
+.iklim-table-wrap table td,
+.iklim-table-wrap table th {
+    padding: 10px 14px !important;
+    font-size: 0.9rem !important;
+    white-space: normal !important;
+    word-break: break-word;
+}
+
+/* Hapus inline width dari BPS yang bikin tabel overflow */
+.iklim-table-wrap table[width],
+.iklim-table-wrap table td[width],
+.iklim-table-wrap table th[width] {
+    width: auto !important;
+}
+</style>
+
 <section class="section-iklim">
     <div class="section-title">
         <h2>🌡️ Data Iklim Provinsi Jawa Timur</h2>
@@ -25,45 +56,43 @@
         return txt.value;
     }
 
-    try {
-        const res = await fetch(url, {
-            headers: { 'Accept': 'application/json' }
+    function removeInlineWidths(el) {
+        // Hapus semua atribut width inline dari BPS
+        el.removeAttribute('width');
+        el.removeAttribute('style');
+        el.querySelectorAll('[width], [style]').forEach(child => {
+            child.removeAttribute('width');
+            // Hapus hanya width dari style inline, sisakan yang lain
+            if (child.style.width) child.style.width = '';
         });
+    }
 
+    try {
+        const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
         const data = await res.json();
-
         if (!data?.data?.table) throw new Error("Tabel tidak ditemukan");
 
         const judul = data.data.title ?? "Data Iklim";
-
-        // Decode HTML entities dulu, baru render sebagai HTML
         const tabelDecoded = decodeHTMLEntities(data.data.table);
 
         const wrapper = document.createElement('div');
-        wrapper.innerHTML =
-            '<div class="iklim-judul">' + judul + '</div>' +
-            '<div class="iklim-table-wrap">' + tabelDecoded + '</div>';
+        wrapper.innerHTML = tabelDecoded;
 
-        // Hapus tag <html>, <head>, <style> dari dalam tabel BPS
-        // karena BPS kadang return full HTML document
-        const styleTags = wrapper.querySelectorAll('style, head, script');
-        styleTags.forEach(el => el.remove());
+        // Buang style/head/script dari BPS
+        wrapper.querySelectorAll('style, head, script').forEach(el => el.remove());
 
-        // Ambil hanya bagian <table> saja
         const tableEl = wrapper.querySelector('table');
         if (tableEl) {
-            // Tambahkan class supaya bisa di-style
             tableEl.classList.add('iklim-table');
+            removeInlineWidths(tableEl); // <-- hapus width inline
 
-            document.getElementById('iklimKonten').innerHTML =
-                '<div class="iklim-judul">' + judul + '</div>' +
-                '<div class="iklim-table-wrap"></div>';
-
-            document.querySelector('.iklim-table-wrap').appendChild(tableEl);
+            const konten = document.getElementById('iklimKonten');
+            konten.innerHTML = '<div class="iklim-judul">' + judul + '</div>' +
+                               '<div class="iklim-table-wrap"></div>';
+            konten.querySelector('.iklim-table-wrap').appendChild(tableEl);
         } else {
-            // Fallback jika tidak ada tag table
             document.getElementById('iklimKonten').innerHTML =
                 '<div class="iklim-judul">' + judul + '</div>' +
                 '<div class="iklim-table-wrap">' + tabelDecoded + '</div>';
@@ -74,9 +103,8 @@
             <div class="iklim-error-box">
                 ⚠️ Gagal memuat data iklim.<br>
                 <small style="color:#94a3b8;">${e.message}</small><br><br>
-                <small>Coba refresh halaman atau kunjungi 
-                <a href="https://jatim.bps.go.id" target="_blank" style="color:#3b82f6;">BPS Jawa Timur</a> 
-                langsung.</small>
+                <small>Coba refresh atau kunjungi 
+                <a href="https://jatim.bps.go.id" target="_blank" style="color:#3b82f6;">BPS Jawa Timur</a>.</small>
             </div>`;
     }
 })();
