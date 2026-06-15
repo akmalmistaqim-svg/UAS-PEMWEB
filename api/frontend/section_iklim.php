@@ -1,36 +1,77 @@
-<?php
-header('Content-Type: application/json');
+<!-- ===== SECTION: DATA IKLIM BPS ===== -->
+<section id="dataiklim" class="section-iklim">
+    <div class="section-title">
+        <h2>🌡️ Data Iklim Provinsi Jawa Timur</h2>
+        <p>Data pengamatan unsur iklim dari stasiun BMKG Jawa Timur</p>
+    </div>
+    <div class="iklim-wrap">
+        <div id="iklimKonten">
+            <div class="iklim-loading">
+                <span class="grafik-spinner"></span> Memuat data iklim...
+            </div>
+        </div>
+        <p class="iklim-sumber">Sumber: Badan Pusat Statistik (BPS) Provinsi Jawa Timur · BMKG</p>
+    </div>
+</section>
 
-$apiKey = "8100aa782b00c8674a151309454e0901";
+<script>
+(async function () {
+    function decodeHTMLEntities(str) {
+        const txt = document.createElement('textarea');
+        txt.innerHTML = str;
+        return txt.value;
+    }
 
-$url = "https://webapi.bps.go.id/v1/api/view/domain/3500/model/statictable/lang/ind/id/2303/key/{$apiKey}";
+    function removeInlineWidths(el) {
+        el.removeAttribute('width');
+        el.removeAttribute('style');
+        el.querySelectorAll('[width], [style]').forEach(child => {
+            child.removeAttribute('width');
+            if (child.style && child.style.width) child.style.width = '';
+        });
+    }
 
-$response = file_get_contents($url);
+    try {
+        const res = await fetch('/api/frontend/iklim_api.php');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-if ($response === FALSE) {
-    echo json_encode(["error" => "Gagal mengambil data"]);
-    exit;
-}
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+        if (data.status !== 'OK') throw new Error("Respons tidak valid");
 
-$data = json_decode($response, true);
+        const judul = data.judul ?? "Data Iklim";
+        const tabelDecoded = decodeHTMLEntities(data.tabel);
 
-// ambil langsung (tanpa foreach)
-if (!isset($data['data']['table'])) {
-    echo json_encode([
-        "error" => "Tabel tidak ditemukan",
-        "debug" => $data
-    ]);
-    exit;
-}
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = tabelDecoded;
 
-// ambil tabel & judul
-$tabel = html_entity_decode($data['data']['table']);
-$judul = $data['data']['title'] ?? "Data Statistik";
+        wrapper.querySelectorAll('style, head, script').forEach(el => el.remove());
 
-// kirim ke frontend
-echo json_encode([
-    "status" => "OK",
-    "judul"  => $judul,
-    "tabel"  => $tabel
-]);
-?>
+        const tableEl = wrapper.querySelector('table');
+        const konten  = document.getElementById('iklimKonten');
+
+        if (tableEl) {
+            tableEl.classList.add('iklim-table');
+            removeInlineWidths(tableEl);
+
+            konten.innerHTML =
+                '<div class="iklim-judul">' + judul + '</div>' +
+                '<div class="iklim-table-wrap"></div>';
+            konten.querySelector('.iklim-table-wrap').appendChild(tableEl);
+        } else {
+            konten.innerHTML =
+                '<div class="iklim-judul">' + judul + '</div>' +
+                '<div class="iklim-table-wrap">' + tabelDecoded + '</div>';
+        }
+
+    } catch (e) {
+        document.getElementById('iklimKonten').innerHTML = `
+            <div class="iklim-error-box">
+                ⚠️ Gagal memuat data iklim.<br>
+                <small style="color:#94a3b8;">${e.message}</small><br><br>
+                <small>Coba refresh atau kunjungi
+                <a href="https://jatim.bps.go.id" target="_blank" style="color:#4CAF50;">BPS Jawa Timur</a>.</small>
+            </div>`;
+    }
+})();
+</script>
