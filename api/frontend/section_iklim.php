@@ -16,6 +16,43 @@
 
 <script>
 (async function() {
+    const apiKey = "8100aa782b00c8674a151309454e0901";
+    const url = `https://webapi.bps.go.id/v1/api/view/domain/3500/model/statictable/lang/ind/id/2303/key/${apiKey}`;
+
+    try {
+        const res = await fetch(url, {
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const data = await res.json();
+
+        if (!data?.data?.table) throw new Error("Tabel tidak ditemukan");
+
+        const judul = data.data.title ?? "Data Iklim";
+        const tabel = data.data.table;
+
+        document.getElementById('iklimKonten').innerHTML =
+            '<div class="iklim-judul">' + judul + '</div>' +
+            '<div class="iklim-table-wrap">' + tabel + '</div>';
+
+    } catch(e) {
+        // Fallback: tampilkan tabel statis jika API gagal
+        document.getElementById('iklimKonten').innerHTML = `
+            <div class="iklim-error-box">
+                ⚠️ Gagal memuat data iklim.<br>
+                <small style="color:#94a3b8;">${e.message}</small><br><br>
+                <small>Coba refresh halaman atau kunjungi 
+                <a href="https://jatim.bps.go.id" target="_blank" style="color:#3b82f6;">BPS Jawa Timur</a> 
+                langsung.</small>
+            </div>`;
+    }
+})();
+</script>
+
+<script>
+(async function() {
     try {
         var res  = await fetch('/api/iklim.php');
         var data = await res.json();
