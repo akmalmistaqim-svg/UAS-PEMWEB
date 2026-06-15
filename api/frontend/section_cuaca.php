@@ -11,7 +11,7 @@
                 <div class="cuaca-stat-pill">📅 7 Hari ke Depan</div>
                 <div class="cuaca-stat-pill">⚡ Real-time</div>
             </div>
-            <a href="/api/frontend/iklim.php" class="cuaca-banner-btn">
+            <a href="/api/frontend/cuaca.php" class="cuaca-banner-btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 Cek Cuaca Sekarang
             </a>
