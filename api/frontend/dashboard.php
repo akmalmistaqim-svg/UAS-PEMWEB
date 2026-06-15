@@ -248,7 +248,7 @@ $nama_display = explode(' ', $nama_lengkap)[0];
 
 <?php include 'section_cuaca.php'; ?>
 <?php include 'section_grafik.php'; ?>
-<?php include 'section_iklim.php'; ?>
+<?php include 'iklim.php'; ?>
 
 <footer>
     <p>&copy; <?php echo date('Y'); ?> Website Agro Clima Care (ACC). Semua Hak Dilindungi.</p>
