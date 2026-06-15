@@ -17,7 +17,7 @@
 <script>
 (async function() {
     try {
-        var res  = await fetch('/api/Iklim.php');
+        var res  = await fetch('/api/iklim.php');
         var data = await res.json();
         if (data.error) throw new Error(data.error);
         document.getElementById('iklimKonten').innerHTML =
