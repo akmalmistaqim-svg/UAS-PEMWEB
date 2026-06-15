@@ -3,7 +3,7 @@
 /* ====== LAYOUT SECTION ====== */
 .section-iklim {
     padding: 50px 20px;
-    background: #f3f6fa;
+    background: #f4f6fa;
 }
 
 .section-iklim .section-title {
@@ -12,11 +12,10 @@
 }
 
 .section-iklim .section-title h2 {
-    font-size: 2.3rem;
-    font-weight: 800;
+    font-size: 2rem;
+    font-weight: 700;
     color: #1e293b;
     margin: 0 0 8px 0;
-    letter-spacing: -0.5px;
 }
 
 .section-iklim .section-title p {
@@ -26,12 +25,14 @@
 }
 
 .iklim-wrap {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     background: #ffffff;
-    border-radius: 18px;
-    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
-    padding: 32px;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 24px;
+    overflow-x: auto;
 }
 
 .iklim-sumber {
@@ -45,20 +46,18 @@
 .iklim-judul {
     text-align: center;
     font-weight: 700;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: #1e293b;
     line-height: 1.7;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
     padding: 0 10px;
 }
 
-/* ====== TABEL WRAPPER ====== */
+/* ====== TABEL ====== */
 .iklim-table-wrap {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    border-radius: 12px;
-    border: 1px solid #e8edf3;
 }
 
 .iklim-table-wrap table,
@@ -67,18 +66,7 @@
     min-width: 100% !important;
     border-collapse: collapse;
     table-layout: auto !important;
-    font-family: inherit;
-}
-
-.iklim-table-wrap table td,
-.iklim-table-wrap table th {
-    padding: 14px 18px !important;
-    font-size: 0.95rem !important;
-    white-space: normal !important;
-    word-break: break-word;
-    border-bottom: 1px solid #eef2f6;
-    color: #334155;
-    text-align: left;
+    font-size: 13px;
 }
 
 /* Hapus inline width dari BPS yang bikin tabel overflow */
@@ -88,75 +76,63 @@
     width: auto !important;
 }
 
-/* ====== BARIS HEADER (Unsur Iklim | 2019 | 2020 | 2021) ====== */
-.iklim-table-wrap table tr.iklim-header-row td,
-.iklim-table-wrap table tr.iklim-header-row th {
-    background-color: #14233f !important;
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    text-align: center !important;
-    padding: 16px 18px !important;
-    border-bottom: none !important;
-}
-
-.iklim-table-wrap table tr.iklim-header-row td:first-child,
-.iklim-table-wrap table tr.iklim-header-row th:first-child {
-    text-align: left !important;
-}
-
-/* Superscript angka footnote di header */
-.iklim-table-wrap table tr.iklim-header-row sup {
-    font-size: 0.7rem !important;
-    color: #cbd5e1 !important;
-}
-
-/* ====== BARIS KATEGORI (Suhu, Kelembaban, Kecepatan Angin, dst) ====== */
-.iklim-table-wrap table tr.iklim-category-row td {
-    background-color: #f1f5f9 !important;
-    font-weight: 700 !important;
-    color: #1e293b !important;
-    font-size: 0.95rem !important;
-}
-
-/* Sel kosong di baris kategori (kolom 2019/2020/2021) */
-.iklim-table-wrap table tr.iklim-category-row td:not(:first-child) {
-    background-color: #f1f5f9 !important;
-}
-
-/* Baris data biasa: kolom pertama (nama unsur) sedikit beda warna */
-.iklim-table-wrap table tr:not(.iklim-header-row):not(.iklim-category-row) td:first-child {
-    color: #475569;
-    font-weight: 500;
-    background-color: #fafbfc;
-}
-
-.iklim-table-wrap table tr:not(.iklim-header-row):not(.iklim-category-row) td:not(:first-child) {
+.iklim-table-wrap table th {
+    background: #1d4ed8;
+    color: #ffffff;
+    padding: 10px;
     text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.iklim-table-wrap table th sup {
+    color: #bfdbfe;
+}
+
+.iklim-table-wrap table td {
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    color: #1e293b;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.iklim-table-wrap table tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+.iklim-table-wrap table tr:hover {
+    background: #eff6ff;
+    transition: background 0.2s;
+}
+
+/* Kolom pertama (nama unsur) rata kiri */
+.iklim-table-wrap table td:first-child {
+    text-align: left;
+    font-weight: 500;
 }
 
 /* ====== BAGIAN CATATAN ====== */
-.iklim-table-wrap table td p,
-.iklim-table-wrap table td[colspan] {
-    font-size: 0.82rem !important;
-    color: #64748b !important;
-    line-height: 1.8 !important;
+.iklim-table-wrap table tr:has(td[colspan]) {
+    background: #f8fafc !important;
 }
 
-/* Baris catatan — border atas pemisah */
-.iklim-table-wrap table tr:has(td[colspan]) {
-    border-top: 2px solid #e2e8f0 !important;
+.iklim-table-wrap table tr:has(td[colspan]):hover {
+    background: #f8fafc !important;
 }
 
 .iklim-table-wrap table tr:has(td[colspan]) td {
-    padding: 18px 18px 12px 18px !important;
-    color: #64748b !important;
-    font-size: 0.82rem !important;
-    font-style: italic;
-    line-height: 1.8 !important;
-    background-color: #f8fafc !important;
     text-align: left !important;
     font-weight: 400 !important;
+    font-style: italic;
+    color: #64748b !important;
+    font-size: 0.8rem !important;
+    line-height: 1.8 !important;
+    border: none !important;
+    padding: 14px 10px !important;
 }
 
 /* Superscript angka footnote umum */
@@ -186,24 +162,19 @@
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
     .section-iklim .section-title h2 {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
     }
     .iklim-wrap {
-        padding: 18px;
-        border-radius: 14px;
+        padding: 16px;
+        border-radius: 0.75rem;
     }
     .iklim-judul {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
-    .iklim-table-wrap table td,
-    .iklim-table-wrap table th {
-        padding: 10px 12px !important;
-        font-size: 0.85rem !important;
-    }
-    .iklim-table-wrap table tr.iklim-header-row td,
-    .iklim-table-wrap table tr.iklim-header-row th {
-        font-size: 0.85rem !important;
-        padding: 12px 10px !important;
+    .iklim-table-wrap table th,
+    .iklim-table-wrap table td {
+        padding: 6px 8px;
+        font-size: 12px;
     }
 }
 </style>
@@ -245,34 +216,6 @@
         });
     }
 
-    // Memberi class pada baris header & baris kategori agar bisa di-style
-    function tandaiBarisTabel(tableEl) {
-        const rows = tableEl.querySelectorAll('tr');
-        rows.forEach((tr, idx) => {
-            // Baris pertama = header (Unsur Iklim | 2019 | 2020 | 2021)
-            if (idx === 0) {
-                tr.classList.add('iklim-header-row');
-                return;
-            }
-
-            const cells = tr.querySelectorAll('td, th');
-            if (cells.length === 0) return;
-
-            // Lewati baris catatan (punya colspan)
-            const adaColspan = Array.from(cells).some(c => c.hasAttribute('colspan'));
-            if (adaColspan) return;
-
-            if (cells.length > 1) {
-                let sisaKosong = true;
-                for (let i = 1; i < cells.length; i++) {
-                    const txt = cells[i].textContent.replace(/\u00A0/g, '').trim();
-                    if (txt !== '') { sisaKosong = false; break; }
-                }
-                if (sisaKosong) tr.classList.add('iklim-category-row');
-            }
-        });
-    }
-
     try {
         const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -293,7 +236,6 @@
         if (tableEl) {
             tableEl.classList.add('iklim-table');
             removeInlineWidths(tableEl); // <-- hapus width inline
-            tandaiBarisTabel(tableEl);   // <-- tandai baris header & kategori
 
             const konten = document.getElementById('iklimKonten');
             konten.innerHTML = '<div class="iklim-judul">' + judul + '</div>' +
