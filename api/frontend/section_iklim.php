@@ -28,6 +28,38 @@
 .iklim-table-wrap table th[width] {
     width: auto !important;
 }
+
+/* ===== BAGIAN CATATAN ===== */
+/* Target td yang berisi teks "Catatan:" */
+.iklim-table-wrap table td p,
+.iklim-table-wrap table td[colspan] {
+    font-size: 0.82rem !important;
+    color: #64748b !important;
+    line-height: 1.8 !important;
+}
+
+/* Baris catatan — border atas pemisah */
+.iklim-table-wrap table tr:has(td[colspan]) {
+    border-top: 2px solid #e2e8f0 !important;
+}
+
+.iklim-table-wrap table tr:has(td[colspan]) td {
+    padding-top: 16px !important;
+    padding-bottom: 8px !important;
+    color: #64748b !important;
+    font-size: 0.82rem !important;
+    font-style: italic;
+    line-height: 1.8 !important;
+    background-color: #f8fafc !important;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Superscript angka footnote */
+.iklim-table-wrap table sup {
+    font-size: 0.65rem !important;
+    color: #94a3b8 !important;
+    vertical-align: super;
+}
 </style>
 
 <section class="section-iklim">
