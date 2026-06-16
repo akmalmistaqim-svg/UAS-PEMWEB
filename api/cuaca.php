@@ -1,6 +1,6 @@
 <?php
 // Gunakan __DIR__ agar path-nya absolut dan aman di Vercel
-include __DIR__ . '/../backend/auth_helper.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/api/backend/auth_helper.php';
 
 $user_data = verify_auth();
 if (!$user_data) {
