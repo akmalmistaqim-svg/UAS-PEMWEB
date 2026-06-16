@@ -17,19 +17,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Ambil daftar kota
-    fetch('/api/ambilKota.php')
-        .then(res => res.json())
-        .then(data => {
+        fetch('/api/ambilkota.php')
+         .then(res => res.json())
+            .then(data => {
             var select = document.getElementById('inputDaerah');
-            data.forEach(function (item) {
-                if (item.domain_name === 'Jawa Timur') return;
-                var nama = item.domain_name.replace('Kabupaten ', '').replace('Kota ', '');
-                var option = document.createElement('option');
-                option.value = nama;
-                option.textContent = item.domain_name;
-                select.appendChild(option);
-            });
+              data.forEach(function (item) {
+            if (item.domain_name === 'Jawa Timur') return;
+            var option = document.createElement('option');
+            option.value = item.domain_name.replace('Kabupaten ', '').replace('Kota ', '');
+            option.textContent = item.domain_name;
+            select.appendChild(option);
         });
+    })
+    .catch(err => {
+        console.error('Gagal ambil daftar kota:', err);
+    });
 
     // Hamburger
     var hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -67,7 +69,7 @@ function cekPrediksi() {
     }
     error.classList.remove('tampil');
 
-    fetch('/api/ambilCuaca.php?kota=' + encodeURIComponent(daerah))
+    fetch('/api/ambilcuaca.php?kota=' + encodeURIComponent(daerah))
         .then(res => res.json())
         .then(cuaca => {
             if (cuaca.error) { alert('Gagal ambil data cuaca: ' + cuaca.error); return; }
