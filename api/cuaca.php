@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 // Gunakan __DIR__ agar path-nya absolut dan aman di Vercel
 include $_SERVER['DOCUMENT_ROOT'] . '/api/backend/auth_helper.php';
 
