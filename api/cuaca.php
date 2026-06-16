@@ -281,7 +281,7 @@ $nama_display = explode(' ', $nama_lengkap)[0];
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="/api/frontend/cuaca.js"></script>
+<script src="/javascript/cuaca.js"></script>
 
 </body>
 </html>
