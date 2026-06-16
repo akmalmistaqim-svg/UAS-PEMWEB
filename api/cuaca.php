@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 // Gunakan __DIR__ agar path-nya absolut dan aman di Vercel
-include $_SERVER['DOCUMENT_ROOT'] . '/api/backend/auth_helper.php';
+include __DIR__ . '/../backend/auth_helper.php';
 
 $user_data = verify_auth();
 if (!$user_data) {
@@ -281,7 +281,7 @@ $nama_display = explode(' ', $nama_lengkap)[0];
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="/javascript/cuaca.js"></script>
+<script src="/cuaca.js"></script>
 
 </body>
 </html>
